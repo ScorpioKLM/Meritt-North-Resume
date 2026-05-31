@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meritt North — Premium Interactive Portfolio Resume</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #000000; /* Pure Black Continuous Canvas Lock */
+            --bg-card: #141417;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.2);
+            --border-color: #222227;
+            --sidebar-bg: #111113;
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f9fafb;
+            --bg-card: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --accent-gold: #b5942b;
+            --accent-gold-glow: rgba(181, 148, 43, 0.12);
+            --border-color: #e5e7eb;
+            --sidebar-bg: #f3f4f6;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.4in;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Body Typography Hard Font Lock (Palatino Linotype Only) --- */
+        body, p, div, li, span, ul, a,
+        .summary-block, 
+        .matrix-values, 
+        .project-summary, 
+        .studio-item-node, 
+        .affiliations-list {
+            font-family: 'Palatino Linotype', serif !important;
+            font-size: 9.5pt !important;
+            color: var(--text-secondary) !important;
+            line-height: 1.6 !important;
+        }
+
+        h1, h2, .professional-title, .philosophy-tagline, .matrix-label, .project-headline, .career-title {
+            font-family: 'Playfair Display', serif !important;
+        }
+
+        body {
+            background-color: var(--bg-main) !important;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px 30px 20px;
+        }
+
+        /* --- Pure Black Header Containment Box --- */
+        .hero-banner-box {
+            background: #000000 !important;
+            border: none !important;
+            border-radius: 0px !important;
+            padding: 40px 0 25px 0;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important; 
+            position: relative;
+        }
+
+        /* Standalone Hardware-Accelerated Logo Scaling (+50% Optimization Shift) */
+        .hero-logo-img {
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            transform: scale(1.50) !important;
+            transform-origin: center center;
+        }
+
+        /* --- Premium Capsule Theme Toggle Switch --- */
+        .theme-toggle-switch {
+            display: flex;
+            background: #141417;
+            border: 1px solid #222227;
+            border-radius: 30px;
+            padding: 3px;
+            cursor: pointer;
+            margin-top: 35px;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .toggle-option {
+            padding: 4px 18px;
+            font-size: 8pt;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: #6b7280;
+        }
+
+        body:not([data-theme="light"]) #opt-dark {
+            background-color: #d4af37;
+            color: #000000 !important;
+        }
+        body:not([data-theme="light"]) #opt-light {
+            color: #9ca3af;
+        }
+
+        body[data-theme="light"] .theme-toggle-switch {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+        body[data-theme="light"] #opt-light {
+            background-color: #b5942b;
+            color: #ffffff;
+        }
+        body[data-theme="light"] #opt-dark {
+            color: #4b5563;
+        }
+
+        /* --- Profile Header Metadata Block (Full Width Symmetrical Footprint) --- */
+        .profile-header-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+            width: 100% !important;
+        }
+
+        .profile-image-container {
+            flex-shrink: 0;
+        }
+
+        .avatar-frame {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            background-color: #1a1a24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .header-main-details {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .header-main-details h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.5px;
+            color: var(--text-primary) !important;
+        }
+
+        /* Highlight System restricted exclusively to main section headers */
+        .gold-letter {
+            color: var(--accent-gold) !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+        }
+
+        /* Premium Micro Bullet Dot */
+        .gold-bullet {
+            color: var(--accent-gold) !important;
+            font-weight: bold !important;
+            margin: 0 3px;
+            display: inline-block;
+        }
+
+        .professional-title {
+            font-size: 12.5pt;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--text-primary) !important;
+            margin-bottom: 8px;
+        }
+
+        .professional-title span {
+            color: var(--accent-gold) !important;
+            margin: 0 4px;
+        }
+
+        .philosophy-tagline {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--text-secondary) !important;
+            font-size: 11pt !important;
+        }
+
+        /* --- Locked Symmetrical Inline Vector Contact Row Container --- */
+        .contact-single-line {
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            color: var(--text-secondary) !important;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            white-space: nowrap !important;
+            gap: 12px !important;
+        }
+
+        .contact-single-line div {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-inline-glyph {
+            width: 13px;
+            height: 13px;
+            fill: var(--accent-gold);
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .contact-single-line a {
+            color: inherit;
+            text-decoration: none !important;
+            transition: color 0.2s;
+        }
+        
+        .contact-single-line a:hover { 
+            color: var(--accent-gold) !important; 
+        }
+
+        .contact-divider {
+            color: var(--accent-gold) !important;
+            font-weight: bold;
+        }
+
+        /* --- Centered Horizon Social Interface Strip --- */
+        .social-media-strip {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .social-icon-wrapper {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-gold);
+            background-color: rgba(212, 175, 55, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link-icon {
+            width: 14px;
+            height: 14px;
+            fill: var(--accent-gold);
+            transition: fill 0.3s ease;
+        }
+
+        .social-icon-wrapper:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--accent-gold-glow);
+        }
+
+        .social-icon-wrapper:hover .social-link-icon {
+            fill: #0d0d0f;
+        }
+
+        /* --- Custom Pop Out Keyframe Animations Engine --- */
+        @keyframes badge-pop-in {
+            0% { transform: scale(0.94); opacity: 0.5; }
+            40% { transform: scale(1.025); opacity: 1; }
+            70% { transform: scale(0.998); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .section-badge.badge-popping {
+            animation: badge-pop-in 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* --- Layout Grid Architectures --- */
+        .dual-column-layout {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header-box { flex-direction: column; text-align: center; padding: 20px 15px; }
+            
+            .contact-single-line div, 
+            .contact-single-line span, 
+            .contact-single-line a {
+                font-size: 2.2vw !important; 
+            }
+            .contact-inline-glyph { width: 2.6vw; height: 2.6vw; margin-right: 3px; }
+            .contact-single-line { gap: 4px !important; justify-content: center !important; }
+            .contact-divider { display: inline-block !important; }
+            .dual-column-layout { grid-template-columns: 1fr; }
+        }
+
+        .dynamic-scroll-section {
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 1px 15px 15px 15px;
+            margin: 0 0 10px 0;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+        }
+
+        .dynamic-scroll-section.section-active-glow {
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+            background-color: var(--bg-card);
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 6px;
+            margin: 25px 0 15px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .left-main-pane .dynamic-scroll-section:first-of-type h2, 
+        .right-sidebar-pane .dynamic-scroll-section:first-of-type h2 { 
+            margin-top: 15px; 
+        }
+
+        /* Clean Left Text Alignment to Delete Formatting Space Overlaps */
+        .summary-block {
+            text-align: left !important;
+        }
+
+        .career-card { margin-bottom: 20px; }
+        .career-header-row { display: flex; justify-content: space-between; align-items: baseline; }
+        
+        .career-title { 
+            font-size: 11.5pt;
+            font-weight: 700; 
+            color: var(--text-primary) !important; 
+        }
+
+        .career-company-meta { font-size: 9pt; color: var(--accent-gold) !important; margin-bottom: 8px; font-weight: 500; }
+        
+        /* Premium List Element Golden Bullet Injector */
+        ul.accomplishment-bullets { margin: 0; padding-left: 18px; list-style: none; }
+        ul.accomplishment-bullets li { position: relative; margin-bottom: 6px; text-align: left; }
+        ul.accomplishment-bullets li::before {
+            content: "•";
+            color: var(--accent-gold);
+            font-weight: bold;
+            position: absolute;
+            left: -14px;
+            top: 0;
+        }
+
+        .matrix-skill-group, .project-card, .studio-item-node {
+            background-color: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        [data-theme="light"] .matrix-skill-group, 
+        [data-theme="light"] .project-card, 
+        [data-theme="light"] .studio-item-node {
+            background-color: #fcfcfd;
+        }
+
+        .matrix-skill-group:hover, .project-card:hover, .studio-item-node:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold-glow);
+        }
+
+        .project-card { padding: 12px; }
+        .studio-item-node { padding: 8px 12px; margin-bottom: 6px; }
+
+        .matrix-label { 
+            font-weight: 700; 
+            font-size: 10.5pt; 
+            color: var(--text-primary) !important; 
+            margin-bottom: 3px; 
+            letter-spacing: 0.3px;
+        }
+
+        .project-headline { 
+            font-weight: 700; 
+            font-size: 11pt; 
+            color: var(--text-primary) !important; 
+            margin-bottom: 3px; 
+            letter-spacing: 0.3px;
+        }
+
+        /* Two-Sided Matrix Flex Rows for Right-Justified Certifications Canvas */
+        .cert-matrix-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+            width: 100%;
+        }
+        .cert-left-node {
+            display: flex;
+            align-items: center;
+        }
+        .cert-right-node {
+            text-align: right;
+            color: var(--text-primary) !important;
+            font-weight: 500;
+        }
+
+        @media print {
+            body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner-box">
+        <img src="meritt_north_logo.png" alt="Meritt North Branding Header Logo" class="hero-logo-img">
+        
+        <div class="theme-toggle-switch" onclick="toggleModeSelection()">
+            <div id="opt-light" class="toggle-option">Light</div>
+            <div id="opt-dark" class="toggle-option">Dark</div>
+        </div>
+    </div>
+
+    <div class="resume-container">
+        <header class="profile-header-box" id="scroll-target-header">
+            <div class="profile-image-container">
+                <div class="avatar-frame">
+                    <img src="https://i.postimg.cc/BQCjvJPv/IMG-20260513-080006-933.webp" alt="Meritt North Headshot">
+                </div>
+            </div>
+            <div class="header-main-details">
+                <h1><span class="gold-letter">M</span>eritt <span class="gold-letter">N</span>orth</h1>
+                <div class="professional-title">AI Trainer <span>•</span> Multimedia Specialist</div>
+                <div class="philosophy-tagline">“Bridging human meaning and machine learning.”</div>
+                
+                <div class="contact-single-line">
+                    <div>
+                        <svg class="contact-inline-glyph" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        210-645-5003
+                    </div>
+                    <div class="contact-divider">•</div>
+                    <div>
+                        <svg class="contact-inline-glyph" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <a href="mailto:imeritt@merittnorth.com">imeritt@merittnorth.com</a>
+                    </div>
+                    <div class="contact-divider">•</div>
+                    <div>
+                        <svg class="contact-inline-glyph" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14c-.16-.64-.26-1.31-.26-2s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 0 1 5.08 16zm2.95-8H5.08a7.987 7.987 0 0 1 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.34.16-2h4.68c.09.66.16 1.32.16 2s-.07 1.34-.16 2zm.28 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                        <a href="https://www.merittnorth.com" target="_blank">merittnorth.com</a>
+                    </div>
+                </div>
+
+                <div class="social-media-strip">
+                    <a href="https://www.linkedin.com/in/meritt-north" target="_blank" class="social-icon-wrapper" aria-label="LinkedIn">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/1ExJpqyKAf/" target="_blank" class="social-icon-wrapper" aria-label="Facebook">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>
+                    </a>
+                    <a href="https://x.com/MerittNorth" target="_blank" class="social-icon-wrapper" aria-label="X (Twitter)">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/meritt_north" target="_blank" class="social-icon-wrapper" aria-label="Instagram">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m5.4 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m4-1.25a.75.75 0 0 1 .75.75a.75.75 0 0 1-.75.75a.75.75 0 0 1-.75-.75a.75.75 0 0 1 .75-.75z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@MerittNorth" target="_blank" class="social-icon-wrapper" aria-label="YouTube">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.503 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.386.507 9.386.507s7.517 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://on.soundcloud.com/uVVHimVMWCsFh1WrnA" target="_blank" class="social-icon-wrapper" aria-label="SoundCloud">
+                        <svg class="social-link-icon" viewBox="0 0 24 24"><path d="M1 13.5c0-.44.24-.8.54-.8.1 0 .18.04.25.1.1.1.2.43.2.7v1c0 .27-.1.6-.2.7a.38.38 0 0 1-.25.1c-.3 0-.54-.36-.54-.8v-1m1.72-1c0-.55.33-1 .73-1c.14 0 .26.06.36.16c.14.15.27.52.27.84v3c0 .32-.13.7-.27.84c-.1.1-.22.16-.36.16c-.4 0-.73-.45-.73-1v-3m1.91-1.25c0-.69.41-1.25.91-1.25c.17 0 .33.07.46.2c.18.2.34.65.34 1.05v4.5c0 .4-.16.85-.34 1.05c-.13.13-.29.2-.46.2c-.5 0-.91-.56-.91-1.25v-4.5m1.91-.75c0-.83.5-1.5 1.11-1.5c.2 0 .4.09.56.25c.22.24.4.78.4 1.25v6c0 .47-.18 1.01-.4 1.25a.83.83 0 0 1-.56.25c-.61 0-1.11-.67-1.11-1.5v-6m1.91.5c0-.69.5-1.25 1.11-1.25c.21 0 .41.08.56.22c.22.24.4.75.4 1.03v5.5c0 .28-.18.8-.4 1.03a.85.85 0 0 1-.56.22c-.61 0-1.11-.56-1.11-1.25v-5.5m1.91-1.5c0-.69.5-1.25 1.11-1.25c.21 0 .41.08.56.22c.22.24.4.75.4 1.03v7.5c0 .28-.18.79-.4 1.03a.85.85 0 0 1-.56.22c-.61 0-1.11-.56-1.11-1.25V10m1.91 1c0-.69.5-1.25 1.12-1.25c.2 0 .4.08.55.22c.23.24.41.75.41 1.03v6.5c0 .28-.18.79-.41 1.03a.88.88 0 0 1-.55.22c-.62 0-1.12-.56-1.12-1.25v-6.5m1.91-2.5c0-.69.5-1.25 1.12-1.25c.2 0 .4.08.55.22c.23.24.41.75.41 1.03V18c0 .28-.18.79-.41 1.03a.88.88 0 0 1-.55.22c-.62 0-1.12-.56-1.12-1.25V8.5M16.27 7c0-2.21 1.62-4 3.61-4c1.68 0 3.1 1.28 3.5 3.03c1.46.27 2.62 1.56 2.62 3.12c0 1.74-1.43 3.15-3.19 3.15h-6.54V7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="dual-column-layout">
+            <div class="left-main-pane">
+                
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">P</span>rofessional <span class="gold-letter">S</span>ummary</h2>
+                    <div class="summary-block">
+                        AI Trainer & Multimedia Specialist with deep expertise in multimodal evaluation, LLM testing, dataset refinement, and high-precision annotation across text, audio, and image-based tasks. Skilled in prompt engineering, safety and bias review, structured dataset development, and human-in-the-loop workflows that strengthen model reasoning, tone accuracy, and contextual intelligence. Combines technical clarity with creative fluency from a professional background in voiceover, narration, audio production, and digital communication. Delivers fast, consistent, high-quality training data that elevates AI performance across modalities.
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">S</span>kills <span class="gold-letter">M</span>atrix</h2>
+                    <div class="matrix-skill-group section-badge">
+                        <div class="matrix-label">AI & Data</div>
+                        <div class="matrix-values">Annotation, LLM evaluation, multimodal testing, dataset QA, Human-in-the-loop workflows, Safety review, Prompt engineering</div>
+                    </div>
+                    <div class="matrix-skill-group section-badge">
+                        <div class="matrix-label">Audio & Multimedia</div>
+                        <div class="matrix-values">Professional Voiceover, Narration, Audio editing, TTS/ASR evaluation, Emotion labeling</div>
+                    </div>
+                    <div class="matrix-skill-group section-badge">
+                        <div class="matrix-label">Digital Strategy</div>
+                        <div class="matrix-values">SEO, content optimization, UX writing, Behavioral analysis</div>
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">P</span>rofessional <span class="gold-letter">E</span>xperience</h2>
+                    
+                    <div class="career-card">
+                        <div class="career-header-row">
+                            <div class="career-title">AI Trainer & Multimodal Evaluator</div>
+                            <div style="font-size: 9pt; font-weight: normal; color: var(--text-secondary);">2024 <span class="gold-bullet">•</span> Present</div>
+                        </div>
+                        <div class="career-company-meta">Freelance • Contract • Remote</div>
+                        <ul class="accomplishment-bullets">
+                            <li>Conduct multimodal evaluations across text, audio, and image tasks to improve model accuracy and contextual reasoning.</li>
+                            <li>Perform high-precision annotation, labeling, and dataset refinement for LLM training pipelines.</li>
+                            <li>Test and evaluate model outputs for tone, clarity, factuality, and alignment with human communication patterns.</li>
+                            <li>Develop prompts, test cases, and structured evaluation workflows for AI behavior analysis.</li>
+                            <li>Provide feedback that improves model safety, reasoning depth, and multimodal understanding.</li>
+                        </ul>
+                    </div>
+
+                    <div class="career-card">
+                        <div class="career-header-row">
+                            <div class="career-title">Multimedia Specialist</div>
+                            <div style="font-size: 9pt; font-weight: normal; color: var(--text-secondary);">2019 <span class="gold-bullet">•</span> Present</div>
+                        </div>
+                        <div class="career-company-meta">Meritt North, LLC</div>
+                        <ul class="accomplishment-bullets">
+                            <li>Create SEO-optimized content, web copy, and digital assets for brands and small businesses.</li>
+                            <li>Analyze user behavior and optimize content for clarity, engagement, and search performance.</li>
+                            <li>Manage multimedia content production including audio, video, and digital storytelling.</li>
+                        </ul>
+                    </div>
+
+                    <div class="career-card">
+                        <div class="career-header-row">
+                            <div class="career-title">Voiceover Artist & Audiobook Narrator</div>
+                            <div style="font-size: 9pt; font-weight: normal; color: var(--text-secondary);">2018 <span class="gold-bullet">•</span> Present</div>
+                        </div>
+                        <div class="career-company-meta">Meritt North, LLC</div>
+                        <ul class="accomplishment-bullets">
+                            <li>Record, edit, and produce professional-grade voiceover and narration for audiobooks, ads, and multimedia projects.</li>
+                            <li>Deliver clean, consistent audio with strong emotional interpretation and vocal clarity.</li>
+                            <li>Collaborate with authors, producers, and creative teams to achieve narrative alignment.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">N</span>otable <span class="gold-letter">P</span>rojects</h2>
+                    <div class="project-card section-badge">
+                        <div class="project-headline">AI Multimodal Evaluation Suite</div>
+                        <div class="project-summary">Designed and executed structured evaluation workflows for testing LLM responses across text, audio, and image tasks.</div>
+                    </div>
+                    <div class="project-card section-badge">
+                        <div class="project-headline">Narrative-Driven Dataset Refinement</div>
+                        <div class="project-summary">Improved dataset clarity and consistency for a creative-writing-focused AI model.</div>
+                    </div>
+                    <div class="project-card section-badge">
+                        <div class="project-headline">Voice-Conditioned TTS Testing</div>
+                        <div class="project-summary">Evaluated tone, pacing, and emotional accuracy for next-generation text-to-speech systems.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-sidebar-pane">
+                
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">T</span>echnical</h2>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Python (Basic Data Structures)</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> JSON <span class="gold-bullet">•</span> XML <span class="gold-bullet">•</span> CSV Syntaxes</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> RLHF <span class="gold-bullet">•</span> RLAIF Evaluation Platforms</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Label Studio & Prodigy Frameworks</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Advanced Prompt Engineering</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Jupyter Notebooks & VS Code Ecosystem</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Git & GitHub Version Deployment</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Hugging Face Transformers Environment</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> SQL & Relational Database Essentials</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> TTS <span class="gold-bullet">•</span> ASR Validation Engines</div>
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">S</span>tudio <span class="gold-letter">S</span>pecs</h2>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> DAW: Audacity</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> DAW: Adobe Audition</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Source Connect Connectivity</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Rode NT1-A Professional Condenser Mic</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Focusrite Scarlett 2i2 (3rd Gen) Interface</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Beyerdynamic DT 770 Pro 250 OHM Headphones</div>
+                        <div class="studio-item-node section-badge"><span class="gold-bullet">•</span> Pro Grade Acoustic Sound Proofing Isolation</div>
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">P</span>rofessional <span class="gold-letter">A</span>ffiliations</h2>
+                    <div class="matrix-skill-group section-badge" style="padding: 10px; margin-bottom: 8px;">
+                        <div class="matrix-label">AI & Technical</div>
+                        <div class="matrix-values">AAAI</div>
+                    </div>
+                    <div class="matrix-skill-group section-badge" style="padding: 10px; margin-bottom: 0px;">
+                        <div class="matrix-label">Voiceover & Audiobook</div>
+                        <div class="matrix-values">WoVO <span class="gold-bullet">•</span> APA</div>
+                    </div>
+                </div>
+
+                <div class="dynamic-scroll-section">
+                    <h2><span class="gold-letter">C</span>ertifications</h2>
+                    <div style="padding: 5px;">
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> Google</div>
+                            <div class="cert-right-node">Gen AI Fundamentals</div>
+                        </div>
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> AWS</div>
+                            <div class="cert-right-node">ML Essentials</div>
+                        </div>
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> DeepLearning.AI</div>
+                            <div class="cert-right-node">Prompt Eng.</div>
+                        </div>
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> Meta</div>
+                            <div class="cert-right-node">AI for Creators</div>
+                        </div>
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> Udacity</div>
+                            <div class="cert-right-node">AI with Python</div>
+                        </div>
+                        <div class="cert-matrix-row">
+                            <div class="cert-left-node"><span class="gold-bullet">•</span> IAPWE</div>
+                            <div class="cert-right-node">Certified Writer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const viewableContainers = document.querySelectorAll('.dynamic-scroll-section');
+        const rootHeaderElement = document.getElementById('scroll-target-header');
+
+        const interactionObserverOptions = {
+            threshold: 0.25,
+            rootMargin: "0px 0px -10% 0px"
+        };
+
+        const executeGlowFeedback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-active-glow');
+                } else {
+                    entry.target.classList.remove('section-active-glow');
+                }
+            });
+        };
+
+        const viewportObserver = new IntersectionObserver(executeGlowFeedback, interactionObserverOptions);
+        viewableContainers.forEach(container => { 
+            viewportObserver.observe(container); 
+        });
+
+        // Bouncy Pop Animation Intersection Observer Logic
+        const seen = new WeakSet();
+        const badgeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !seen.has(entry.target)) {
+                    seen.add(entry.target);
+                    entry.target.classList.add('badge-popping');
+                    setTimeout(() => entry.target.classList.remove('badge-popping'), 900);
+                }
+            });
+        }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+
+        document.querySelectorAll('.section-badge').forEach(el => badgeObserver.observe(el));
+
+        // Layout Theme Toggling Engine Functions
+        function toggleModeSelection() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                setResumeTheme('dark');
+            } else {
+                setResumeTheme('light');
+            }
+        }
+
+        function setResumeTheme(themeName) {
+            const body = document.body;
+            if (themeName === 'light') {
+                body.setAttribute('data-theme', 'light');
+            } else {
+                body.removeAttribute('data-theme');
+            }
+        }
+    </script>
+</body>
+</html>
